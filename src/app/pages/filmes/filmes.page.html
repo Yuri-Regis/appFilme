@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Busca de Filmes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="termosBusca" (ionChange)="buscar()"></ion-searchbar>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Selecionar Tipo</ion-label>
+      <ion-select [(ngModel)]="tipo" (ionChange)="buscar()">
+        <ion-select-option value="all">Tudo</ion-select-option>
+        <ion-select-option value="movie">Filmes</ion-select-option>
+        <ion-select-option value="series">Séries</ion-select-option>
+        <ion-select-option value="episode">Episódios</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item button *ngFor="let filme of filmes" [routerLink]="['/filmes-detalhes', filme.imdbID]"> 
+      <ion-avatar slot="start">
+      </ion-avatar>
+
+      <ion-label text-wrap>
+        <h3>{{filme.Title}}</h3>
+        {{filme.Year}}
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>
